@@ -1,0 +1,729 @@
+{
+  "restaurants": [
+    {
+      "id": "res1",
+      "name": "Burger King",
+      "rating": 4.2,
+      "deliveryTime": "25-30 min",
+      "costForTwo": 500,
+      "cuisine": "American, Fast Food",
+      "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=1200&q=100"
+    },
+    {
+      "id": "res2",
+      "name": "Pizza Hut",
+      "rating": 4,
+      "deliveryTime": "35-40 min",
+      "costForTwo": 800,
+      "cuisine": "Italian, Pizza",
+      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=100"
+    },
+    {
+      "id": "res3",
+      "name": "The Green Bowl",
+      "rating": 4.5,
+      "deliveryTime": "20-25 min",
+      "costForTwo": 400,
+      "cuisine": "Healthy, Salads",
+      "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200&q=100"
+    },
+    {
+      "id": "res4",
+      "name": "Sushi Central",
+      "rating": 4.7,
+      "deliveryTime": "45-50 min",
+      "costForTwo": 1500,
+      "cuisine": "Japanese, Sushi",
+      "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1200&q=100"
+    }
+  ],
+  "foods": [
+    {
+      "id": "1",
+      "restaurantId": "res1",
+      "name": "Classic Burger",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200&q=100",
+      "category": "Fast Food"
+    },
+    {
+      "id": "2",
+      "restaurantId": "res2",
+      "name": "Pepperoni Pizza",
+      "price": 499,
+      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=100",
+      "category": "Italian"
+    },
+    {
+      "id": "3",
+      "restaurantId": "res3",
+      "name": "Garden Salad",
+      "price": 199,
+      "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200&q=100",
+      "category": "Healthy"
+    },
+    {
+      "id": "4",
+      "restaurantId": "res4",
+      "name": "Sushi Platter",
+      "price": 899,
+      "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1200&q=100",
+      "category": "Japanese"
+    },
+    {
+      "id": "5",
+      "restaurantId": "res2",
+      "name": "Pasta Carbonara",
+      "price": 349,
+      "image": "https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=1200&q=100",
+      "category": "Italian"
+    },
+    {
+      "id": "6",
+      "restaurantId": "res1",
+      "name": "Chocolate Cake",
+      "price": 149,
+      "image": "https://legateaucakes.com/cdn/shop/files/rn-image_picker_lib_temp_55d91c70-5847-4271-bd97-be8572deede2.png?v=1768724667",
+      "category": "Desserts"
+    },
+    {
+      "id": "7",
+      "restaurantId": "res1",
+      "name": " Chicken Biryani",
+      "price": 399,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUkFl4-e90gihmLEM7TZZ-LTbwkWQ47VaLMQ&s",
+      "category": "Indian"
+    },
+    {
+      "id": "8",
+      "restaurantId": "res1",
+      "name": " Paneer Tikka",
+      "price": 299,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLtGFlxyWZ01dtLcHRMGBifnFuukYLBihdVQ&s",
+      "category": "Indian"
+    },
+    {
+      "id": "9",
+      "restaurantId": "res1",
+      "name": " Chicken Noodles",
+      "price": 99,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE-zfvBjGfjhpMKAMfb6G4AAMOyKbI-i_dWQ&s",
+      "category": "Indian"
+    },
+    {
+      "id": "9b",
+      "restaurantId": "res1",
+      "name": "Veg Biryani",
+      "price": 250,
+      "image": "https://www.indianveggiedelight.com/wp-content/uploads/2020/04/veg-biryani-instant-pot.jpg",
+      "category": "Indian"
+    },
+    {
+      "id": "10",
+      "restaurantId": "res1",
+      "name": "Tandoori Roti",
+      "price": 50,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_Ri5LQA_Jp-iZtnB0iZqaDyDEONNudc_77Q&s",
+      "category": "Indian"
+    },
+    {
+      "id": "11",
+      "restaurantId": "res1",
+      "name": "Mutton Biryani",
+      "price": 250,
+      "image": "https://www.cubesnjuliennes.com/wp-content/uploads/2021/03/Best-Mutton-Biryani-Recipe.jpg",
+      "category": "Indian"
+    },
+    {
+      "id": "12",
+      "restaurantId": "res1",
+      "name": "Chocolate Lava",
+      "price": 100,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkD7OSbyvoEzYoqjoEAjzRxlV0QUXQ7E2M9g&s",
+      "category": "Desserts"
+    },
+    {
+      "id": "13",
+      "restaurantId": "res1",
+      "name": "Idli",
+      "price": 60,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX2-W1WlWNQwzG-jN1Q9lkoW0QKuSCc2eiPA&s",
+      "category": "Indian"
+    },
+    {
+      "id": "14",
+      "restaurantId": "res1",
+      "name": "Dosa",
+      "price": 80,
+      "image": "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/RX_THUMBNAIL/IMAGES/VENDOR/2024/5/29/29d1d582-ad53-4389-b1a6-9192732bab13_43132.jpg",
+      "category": "Indian"
+    },
+    {
+      "id": "15",
+      "restaurantId": "res1",
+      "name": "Vada",
+      "price": 50,
+      "image": "https://cdn.prod.website-files.com/64931d2aee18510b47f4bb1f/64d267379d0d32c0d4dd91ca_vada-1024x683.jpeg",
+      "category": "Indian"
+    }
+  ],
+  "users": [
+    {
+      "id": "U001",
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "password",
+      "role": "Admin",
+      "joinDate": "April 2026"
+    },
+    {
+      "id": "U002",
+      "name": "Student User",
+      "email": "student@example.com",
+      "password": "password",
+      "role": "Customer",
+      "joinDate": "April 2026"
+    },
+    {
+      "id": "U2097",
+      "name": "Deepak",
+      "email": "student@gmail.com",
+      "password": "12345678",
+      "role": "Customer",
+      "joinDate": "April 2026"
+    }
+  ],
+  "cart": [],
+  "orders": [
+    {
+      "id": "ORD5651",
+      "date": "2026-04-09",
+      "total": 848,
+      "status": "Order Placed",
+      "items": [
+        "Pepperoni Pizza",
+        "Pasta Carbonara"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "08:46 pm",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD1319",
+      "date": "2026-04-09",
+      "total": 448,
+      "status": "Order Placed",
+      "items": [
+        "Classic Burger",
+        "Chocolate Cake"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "06:37 pm",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD4522",
+      "date": "2026-04-09",
+      "total": 110,
+      "status": "Order Placed",
+      "items": [
+        "Idli",
+        "Tandoori Roti"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "05:51 pm",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD9975",
+      "date": "2026-04-09",
+      "total": 60,
+      "status": "Order Placed",
+      "items": [
+        "Idli"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "12:04 pm",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD7659",
+      "date": "2026-04-09",
+      "total": 798,
+      "status": "Order Placed",
+      "items": [
+        " Paneer Tikka",
+        "Pepperoni Pizza"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "11:09 am",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD6578",
+      "date": "2026-04-09",
+      "total": 997,
+      "status": "Order Placed",
+      "items": [
+        "Classic Burger",
+        "Pepperoni Pizza",
+        "Garden Salad"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "10:19 am",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD8561",
+      "date": "2026-04-09",
+      "total": 349,
+      "status": "Order Placed",
+      "items": [
+        "Tandoori Roti",
+        "Classic Burger"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "10:04 am",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD5408",
+      "date": "2026-04-09",
+      "total": 798,
+      "status": "Order Placed",
+      "items": [
+        "Classic Burger",
+        "Pepperoni Pizza"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "09:52 am",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD2592",
+      "date": "2026-04-09",
+      "total": 798,
+      "status": "Order Placed",
+      "items": [
+        "Pepperoni Pizza",
+        "Classic Burger"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "09:46 am",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD5695",
+      "date": "2026-04-09",
+      "total": 798,
+      "status": "Order Placed",
+      "items": [
+        "Classic Burger",
+        "Pepperoni Pizza"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "09:13 am",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD6105",
+      "date": "2026-04-09",
+      "total": 798,
+      "status": "Order Placed",
+      "items": [
+        "Classic Burger",
+        "Pepperoni Pizza"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "07:19 am",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD4464",
+      "date": "2026-04-09",
+      "total": 1895,
+      "status": "Order Placed",
+      "items": [
+        "Classic Burger",
+        "Pepperoni Pizza"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "07:13 am",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD1243",
+      "date": "2026-04-08",
+      "total": 798,
+      "status": "Order Placed",
+      "items": [
+        "Classic Burger",
+        "Pepperoni Pizza"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "11:23 pm",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD3150",
+      "date": "2026-04-08",
+      "total": 997,
+      "status": "Order Placed",
+      "items": [
+        "Pepperoni Pizza",
+        "Classic Burger",
+        "Garden Salad"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "11:00 pm",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ORD001",
+      "date": "2026-03-28",
+      "total": 798,
+      "status": "Delivered",
+      "items": [
+        "Classic Burger",
+        "Pepperoni Pizza"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "10:00 AM",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "10:15 AM",
+          "completed": true
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "10:45 AM",
+          "completed": true
+        },
+        {
+          "step": "Delivered",
+          "time": "11:05 AM",
+          "completed": true
+        }
+      ]
+    },
+    {
+      "id": "ORD002",
+      "date": "2026-03-30",
+      "total": 199,
+      "status": "On the way",
+      "items": [
+        "Garden Salad"
+      ],
+      "tracking": [
+        {
+          "step": "Order Placed",
+          "time": "12:30 PM",
+          "completed": true
+        },
+        {
+          "step": "Preparing",
+          "time": "12:45 PM",
+          "completed": true
+        },
+        {
+          "step": "Out for Delivery",
+          "time": "01:15 PM",
+          "completed": false
+        },
+        {
+          "step": "Delivered",
+          "time": "--:--",
+          "completed": false
+        }
+      ]
+    }
+  ],
+  "feedbacks": [
+    {
+      "id": "fb1",
+      "name": "Amit",
+      "rating": 5,
+      "message": "The speed of delivery is just mind-blowing! FoodieExpress has completely changed the way I order food. The UI is so sleek and premium.",
+      "date": "2026-04-09",
+      "image": "/amit_satisfied_customer_1775746055289.png"
+    },
+    {
+      "id": "fb2",
+      "name": "Rohan",
+      "rating": 4,
+      "message": "I love the variety of restaurants available. Every meal I've ordered so far has been fresh and hot. Best food app in the city!",
+      "date": "2026-04-09",
+      "image": "/rohan_satisfied_customer_1775746111234.png"
+    }
+  ]
+}
