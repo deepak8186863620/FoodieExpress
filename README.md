@@ -77,7 +77,7 @@ FoodieExpress is a high-performance, feature-rich food delivery application insp
 |---|---|
 | **Frontend** | React.js, Tailwind CSS, Framer Motion |
 | **Backend** | Node.js, Express.js |
-| **Database** | Local JSON (`data.json`) *(can be upgraded to MongoDB)* |
+| **Database** | Local JSON (`data.json`) ,Firebase Databse,MongoData Base |
 | **Routing** | React Router DOM |
 | **State Management** | React Hooks (`useState`, `useEffect`) |
 | **API Handling** | RESTful APIs (GET, POST, DELETE) |
