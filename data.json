@@ -35,6 +35,42 @@
       "costForTwo": 1500,
       "cuisine": "Japanese, Sushi",
       "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1200&q=100"
+    },
+    {
+      "id": "res1_2",
+      "name": "Burger King Premium",
+      "rating": 4.2,
+      "deliveryTime": "25-30 min",
+      "costForTwo": 500,
+      "cuisine": "American, Fast Food",
+      "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=1200&q=100"
+    },
+    {
+      "id": "res2_2",
+      "name": "Pizza Hut Premium",
+      "rating": 4,
+      "deliveryTime": "35-40 min",
+      "costForTwo": 800,
+      "cuisine": "Italian, Pizza",
+      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=100"
+    },
+    {
+      "id": "res3_2",
+      "name": "The Green Bowl Premium",
+      "rating": 4.5,
+      "deliveryTime": "20-25 min",
+      "costForTwo": 400,
+      "cuisine": "Healthy, Salads",
+      "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200&q=100"
+    },
+    {
+      "id": "res4_2",
+      "name": "Sushi Central Premium",
+      "rating": 4.7,
+      "deliveryTime": "45-50 min",
+      "costForTwo": 1500,
+      "cuisine": "Japanese, Sushi",
+      "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1200&q=100"
     }
   ],
   "foods": [
@@ -162,6 +198,134 @@
       "id": "15",
       "restaurantId": "res1",
       "name": "Vada",
+      "price": 50,
+      "image": "https://cdn.prod.website-files.com/64931d2aee18510b47f4bb1f/64d267379d0d32c0d4dd91ca_vada-1024x683.jpeg",
+      "category": "Indian"
+    },
+    {
+      "id": "1_2",
+      "restaurantId": "res1",
+      "name": "Double Classic Burger",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200&q=100",
+      "category": "Fast Food"
+    },
+    {
+      "id": "2_2",
+      "restaurantId": "res2",
+      "name": "Double Pepperoni Pizza",
+      "price": 499,
+      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=100",
+      "category": "Italian"
+    },
+    {
+      "id": "3_2",
+      "restaurantId": "res3",
+      "name": "Double Garden Salad",
+      "price": 199,
+      "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200&q=100",
+      "category": "Healthy"
+    },
+    {
+      "id": "4_2",
+      "restaurantId": "res4",
+      "name": "Double Sushi Platter",
+      "price": 899,
+      "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1200&q=100",
+      "category": "Japanese"
+    },
+    {
+      "id": "5_2",
+      "restaurantId": "res2",
+      "name": "Double Pasta Carbonara",
+      "price": 349,
+      "image": "https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=1200&q=100",
+      "category": "Italian"
+    },
+    {
+      "id": "6_2",
+      "restaurantId": "res1",
+      "name": "Double Chocolate Cake",
+      "price": 149,
+      "image": "https://legateaucakes.com/cdn/shop/files/rn-image_picker_lib_temp_55d91c70-5847-4271-bd97-be8572deede2.png?v=1768724667",
+      "category": "Desserts"
+    },
+    {
+      "id": "7_2",
+      "restaurantId": "res1",
+      "name": "Double  Chicken Biryani",
+      "price": 399,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUkFl4-e90gihmLEM7TZZ-LTbwkWQ47VaLMQ&s",
+      "category": "Indian"
+    },
+    {
+      "id": "8_2",
+      "restaurantId": "res1",
+      "name": "Double  Paneer Tikka",
+      "price": 299,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLtGFlxyWZ01dtLcHRMGBifnFuukYLBihdVQ&s",
+      "category": "Indian"
+    },
+    {
+      "id": "9_2",
+      "restaurantId": "res1",
+      "name": "Double  Chicken Noodles",
+      "price": 99,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE-zfvBjGfjhpMKAMfb6G4AAMOyKbI-i_dWQ&s",
+      "category": "Indian"
+    },
+    {
+      "id": "9b_2",
+      "restaurantId": "res1",
+      "name": "Double Veg Biryani",
+      "price": 250,
+      "image": "https://www.indianveggiedelight.com/wp-content/uploads/2020/04/veg-biryani-instant-pot.jpg",
+      "category": "Indian"
+    },
+    {
+      "id": "10_2",
+      "restaurantId": "res1",
+      "name": "Double Tandoori Roti",
+      "price": 50,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_Ri5LQA_Jp-iZtnB0iZqaDyDEONNudc_77Q&s",
+      "category": "Indian"
+    },
+    {
+      "id": "11_2",
+      "restaurantId": "res1",
+      "name": "Double Mutton Biryani",
+      "price": 250,
+      "image": "https://www.cubesnjuliennes.com/wp-content/uploads/2021/03/Best-Mutton-Biryani-Recipe.jpg",
+      "category": "Indian"
+    },
+    {
+      "id": "12_2",
+      "restaurantId": "res1",
+      "name": "Double Chocolate Lava",
+      "price": 100,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkD7OSbyvoEzYoqjoEAjzRxlV0QUXQ7E2M9g&s",
+      "category": "Desserts"
+    },
+    {
+      "id": "13_2",
+      "restaurantId": "res1",
+      "name": "Double Idli",
+      "price": 60,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX2-W1WlWNQwzG-jN1Q9lkoW0QKuSCc2eiPA&s",
+      "category": "Indian"
+    },
+    {
+      "id": "14_2",
+      "restaurantId": "res1",
+      "name": "Double Dosa",
+      "price": 80,
+      "image": "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/RX_THUMBNAIL/IMAGES/VENDOR/2024/5/29/29d1d582-ad53-4389-b1a6-9192732bab13_43132.jpg",
+      "category": "Indian"
+    },
+    {
+      "id": "15_2",
+      "restaurantId": "res1",
+      "name": "Double Vada",
       "price": 50,
       "image": "https://cdn.prod.website-files.com/64931d2aee18510b47f4bb1f/64d267379d0d32c0d4dd91ca_vada-1024x683.jpeg",
       "category": "Indian"

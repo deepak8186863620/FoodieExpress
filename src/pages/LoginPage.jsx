@@ -82,7 +82,7 @@ function LoginPage({ onLogin }) {
 
   return (
     // Outer flexbox wrapper enforcing minimum dimensions relative to viewport and standardizing backgrounds
-    <div className="min-h-[calc(100vh-80px)] flex bg-gray-50">
+    <div className="min-h-[calc(100vh-80px)] flex" style={{ background: 'transparent' }}>
       
       {/* Left Side: Massive graphical presentation, only visible on screens lg and higher */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
@@ -124,7 +124,8 @@ function LoginPage({ onLogin }) {
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-md bg-white/70 backdrop-blur-xl border border-white/50 p-8 rounded-[2rem] shadow-2xl relative z-10"
+          className="w-full max-w-md p-8 rounded-[2rem] shadow-2xl relative z-10"
+          style={{ background: 'rgba(255,255,255,0.82)', backdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.9)' }}
         >
           <div className="text-center mb-8">
             {/* Conditional formatting based on state context */}
@@ -194,9 +195,10 @@ function LoginPage({ onLogin }) {
             {/* Submit button acting on whatever context mode the component is locked to */}
             <button
               type="submit"
-              className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 flex justify-center items-center gap-2 mt-4"
+              className="w-full text-white font-black py-4 rounded-xl transition-all shadow-lg hover:shadow-orange-200 hover:-translate-y-0.5 active:translate-y-0 flex justify-center items-center gap-2 mt-4"
+              style={{ background: 'linear-gradient(135deg, #f97316, #ea580c)' }}
             >
-              {isLogin ? "Sign In" : "Sign Up"}
+              {isLogin ? "Sign In" : "Create Account"}
             </button>
           </form>
 

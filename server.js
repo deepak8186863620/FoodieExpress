@@ -5,9 +5,8 @@ import { fileURLToPath } from "url";
 import crypto from "crypto";
 import Razorpay from "razorpay";
 import bcrypt from "bcryptjs";
-import db from "./database.mongo.js"; // ← MongoDB Atlas
+import db from "./database.mongo.js"; 
 
-// --- RAZORPAY SETUP ---
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -23,15 +22,8 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // Middleware to parse JSON data from requests
   app.use(express.json());
 
-  // --- API ROUTES ---
-
-  /**
-   * GET /api/restaurants
-   * Purpose: Fetch all restaurants with optional search and category filters.
-   */
   app.get("/api/restaurants", async (req, res) => {
     const { search, cuisine } = req.query;
     let restaurants = await db.getCollection("restaurants");
@@ -51,10 +43,6 @@ async function startServer() {
     res.json(restaurants);
   });
 
-  /**
-   * GET /api/restaurants/:id
-   * Purpose: Fetch a specific restaurant and its menu.
-   */
   app.get("/api/restaurants/:id", async (req, res) => {
     const restaurant = await db.getDoc("restaurants", req.params.id);
     if (restaurant) {
@@ -65,21 +53,15 @@ async function startServer() {
     }
   });
 
-  /**
-   * GET /api/foods
-   * Purpose: Fetch all food items.
-   */
   app.get("/api/foods", async (req, res) => {
     const foods = await db.getCollection("foods");
     res.json(foods);
   });
 
-  /**
-   * GET /api/cart
-   * Purpose: Fetch cart items with full food details.
-   */
   app.get("/api/cart", async (req, res) => {
-    const cart = await db.getCollection("carts");
+    const { userId } = req.query;
+    if (!userId) return res.json([]);
+    const cart = await db.query("carts", "userId", "==", userId);
     const foods = await db.getCollection("foods");
     
     const cartWithDetails = cart.map((item) => {
@@ -89,66 +71,59 @@ async function startServer() {
     res.json(cartWithDetails);
   });
 
-  /**
-   * POST /api/cart
-   * Purpose: Add a food item to the cart or increment its quantity.
-   */
   app.post("/api/cart", async (req, res) => {
-    const { foodId, quantity } = req.body;
-    let cart = await db.getCollection("carts");
+    const { foodId, quantity, userId } = req.body;
+    if (!userId) return res.status(400).json({ success: false, message: "userId required" });
+    
+    let cart = await db.query("carts", "userId", "==", userId);
     
     const existingItem = cart.find((item) => item.foodId === foodId);
     if (existingItem) {
       await db.updateDoc("carts", existingItem.id, { quantity: existingItem.quantity + quantity });
     } else {
-      await db.addDoc("carts", { foodId, quantity });
+      await db.addDoc("carts", { foodId, quantity, userId });
     }
     
     res.status(201).json({ success: true, message: "Item added to cart" });
   });
 
-  /**
-   * PUT /api/cart/:foodId
-   * Purpose: Update the quantity of an item in the cart.
-   */
   app.put("/api/cart/:foodId", async (req, res) => {
     const { foodId } = req.params;
-    const { quantity } = req.body;
-    const cartItems = await db.query("carts", "foodId", "==", foodId);
+    const { quantity, userId } = req.body;
+    if (!userId) return res.status(400).json({ success: false, message: "userId required" });
     
-    if (cartItems.length > 0) {
-      await db.updateDoc("carts", cartItems[0].id, { quantity: Math.max(1, quantity) });
+    const cartItems = await db.query("carts", "userId", "==", userId);
+    const itemToUpdate = cartItems.find(item => item.foodId === foodId);
+    
+    if (itemToUpdate) {
+      await db.updateDoc("carts", itemToUpdate.id, { quantity: Math.max(1, quantity) });
       res.json({ success: true, message: "Quantity updated" });
     } else {
       res.status(404).json({ message: "Item not found in cart" });
     }
   });
 
-  /**
-   * DELETE /api/cart/:foodId
-   * Purpose: Remove an item from the cart.
-   */
   app.delete("/api/cart/:foodId", async (req, res) => {
     const { foodId } = req.params;
-    const cartItems = await db.query("carts", "foodId", "==", foodId);
+    const { userId } = req.query;
+    if (!userId) return res.status(400).json({ success: false, message: "userId required" });
     
-    if (cartItems.length > 0) {
-      await db.deleteDoc("carts", cartItems[0].id);
+    const cartItems = await db.query("carts", "userId", "==", userId);
+    const itemToDelete = cartItems.find(item => item.foodId === foodId);
+    
+    if (itemToDelete) {
+      await db.deleteDoc("carts", itemToDelete.id);
       res.json({ success: true, message: "Item removed from cart" });
     } else {
       res.status(404).json({ message: "Item not found" });
     }
   });
 
-  /**
-   * POST /api/razorpay/create-order
-   * Purpose: Create a Razorpay order.
-   */
   app.post("/api/razorpay/create-order", async (req, res) => {
     const { amount } = req.body;
     try {
       const order = await razorpay.orders.create({
-        amount: Math.round(amount * 100), // paise
+        amount: Math.round(amount * 100), 
         currency: "INR",
         receipt: "receipt_" + Date.now(),
       });
@@ -159,10 +134,6 @@ async function startServer() {
     }
   });
 
-  /**
-   * POST /api/razorpay/verify-payment
-   * Purpose: Verify payment and save order.
-   */
   app.post("/api/razorpay/verify-payment", async (req, res) => {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature, orderData } = req.body;
     
@@ -177,6 +148,7 @@ async function startServer() {
     }
 
     const newOrder = {
+      userId: orderData.userId,
       orderNumber: "ORD" + Math.floor(1000 + Math.random() * 9000),
       date: new Date().toISOString(),
       total: orderData.total,
@@ -194,8 +166,7 @@ async function startServer() {
     
     const savedOrder = await db.addDoc("orders", newOrder);
     
-    // Clear cart (delete all docs in carts)
-    const cartSnapshot = await db.getCollection("carts");
+    const cartSnapshot = await db.query("carts", "userId", "==", orderData.userId);
     for (const item of cartSnapshot) {
       await db.deleteDoc("carts", item.id);
     }
@@ -203,17 +174,17 @@ async function startServer() {
     res.json({ success: true, orderId: savedOrder.id });
   });
 
-  /**
-   * POST /api/checkout (COD)
-   */
   app.post("/api/checkout", async (req, res) => {
-    const { total, items } = req.body;
-    
+    const { total, items, userId, address } = req.body;
+    if (!userId) return res.status(400).json({ success: false, message: "userId required" });
+
     const newOrder = {
+      userId: userId,
       orderNumber: "ORD" + Math.floor(1000 + Math.random() * 9000),
       date: new Date().toISOString(),
       total: total,
       status: "Order Placed",
+      address: address,
       items: (items || []).map(item => item.food?.name || "Item"),
       tracking: [
         { step: "Order Placed", time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), completed: true },
@@ -225,7 +196,7 @@ async function startServer() {
 
     const savedOrder = await db.addDoc("orders", newOrder);
     
-    const cartSnapshot = await db.getCollection("carts");
+    const cartSnapshot = await db.query("carts", "userId", "==", userId);
     for (const item of cartSnapshot) {
       await db.deleteDoc("carts", item.id);
     }
@@ -233,9 +204,6 @@ async function startServer() {
     res.json({ success: true, orderId: savedOrder.id });
   });
 
-  /**
-   * GET /api/track/:orderId
-   */
   app.get("/api/track/:orderId", async (req, res) => {
     const order = await db.getDoc("orders", req.params.orderId);
     if (order) {
@@ -245,9 +213,6 @@ async function startServer() {
     }
   });
 
-  /**
-   * POST /api/foods
-   */
   app.post("/api/foods", async (req, res) => {
     const { restaurantId, name, price, image, category } = req.body;
     const newFood = {
@@ -262,17 +227,11 @@ async function startServer() {
     res.status(201).json({ success: true, food: savedFood });
   });
 
-  /**
-   * DELETE /api/foods/:id
-   */
   app.delete("/api/foods/:id", async (req, res) => {
     await db.deleteDoc("foods", req.params.id);
     res.json({ success: true, message: "Food item removed" });
   });
 
-  /**
-   * POST /api/signup
-   */
   app.post("/api/signup", async (req, res) => {
     const { name, email, password } = req.body;
     const existingUsers = await db.query("users", "email", "==", email);
@@ -295,10 +254,6 @@ async function startServer() {
     res.status(201).json({ success: true, user: savedUser });
   });
 
-  /**
-   * POST /api/google-login
-   * Purpose: Create or fetch a user who signs in via Google OAuth.
-   */
   app.post("/api/google-login", async (req, res) => {
     const { name, email, avatar } = req.body;
     if (!email) return res.status(400).json({ success: false, message: "Email is required." });
@@ -307,16 +262,14 @@ async function startServer() {
       const existingUsers = await db.query("users", "email", "==", email);
 
       if (existingUsers.length > 0) {
-        // User already exists — return them
         return res.json({ success: true, user: existingUsers[0] });
       }
 
-      // New Google user — auto-create account
       const newUser = {
         name: name || "Google User",
         email,
         avatar: avatar || "",
-        password: null, // Google users don't have a password
+        password: null, 
         role: email.includes("admin") ? "Admin" : "Customer",
         joinDate: new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" }),
         provider: "google",
@@ -330,9 +283,6 @@ async function startServer() {
     }
   });
 
-  /**
-   * POST /api/login
-   */
   app.post("/api/login", async (req, res) => {
     const { email, password } = req.body;
     const users = await db.query("users", "email", "==", email);
@@ -345,25 +295,27 @@ async function startServer() {
     }
   });
 
-  /**
-   * GET /api/orders
-   */
   app.get("/api/orders", async (req, res) => {
-    const orders = await db.getCollection("orders");
+    const { userId } = req.query;
+    if (!userId) return res.json([]);
+    
+    const users = await db.query("users", "_id", "==", userId);
+    const user = users[0];
+    
+    let orders;
+    if (user && user.role === "Admin") {
+      orders = await db.getCollection("orders");
+    } else {
+      orders = await db.query("orders", "userId", "==", userId);
+    }
     res.json(orders);
   });
 
-  /**
-   * GET /api/feedbacks
-   */
   app.get("/api/feedbacks", async (req, res) => {
     const feedbacks = await db.getCollection("feedbacks");
     res.json(feedbacks);
   });
 
-  /**
-   * POST /api/feedbacks
-   */
   app.post("/api/feedbacks", async (req, res) => {
     const { name, rating, message } = req.body;
     const newFeedback = {
@@ -377,7 +329,6 @@ async function startServer() {
     res.status(201).json({ success: true, feedback: saved });
   });
 
-  // --- VITE MIDDLEWARE ---
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },

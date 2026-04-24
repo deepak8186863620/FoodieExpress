@@ -37,9 +37,11 @@ FoodieExpress is a high-performance, feature-rich food delivery application insp
 - **State Management**: Uses React hooks (`useState`, `useEffect`, `useParams`) for a reactive and fast user experience.
 
 ### **Backend (Node.js + Express)**
-- **RESTful APIs**: Cleanly separated endpoints for restaurants, foods, cart operations, and order management.
-- **Search & Filter Logic**: Server-side logic for handling complex queries and filtering.
-- **ES Modules**: Modern JavaScript syntax throughout the backend.
+- **Database Management**: Uses Mongoose to connect to an external structured dataset (MongoDB Atlas), running with dynamic loose schemas that adapt seamlessly to tracking users, carts, orders, and interactive restaurant menus dynamically.
+- **Authentication Routes**: Processes manual signup forms relying on `bcryptjs` for secure password hashing and verification inside `/api/login`, alongside a separate Firebase integration mapped to `/api/google-login` for creating synced external unified user identities cleanly.
+- **Shopping Cart Mechanics**: Operates exclusively based on real-time state manipulation explicitly mapped via `userId` queries. The backend resolves logical increment operations seamlessly over standard isolated PUT/POST `/api/cart` calls per user context.
+- **Checkout & Financial Log**: Aggregates verified cart JSON schemas into global secured orders mapped cleanly. It manages precise validation loops triggering real Razorpay financial instances logically via `/api/checkout` and strict verification handles executing HMAC SHA-256 for genuine order tracking logic mapping correctly to state databases natively.
+- **RESTful Admin Routes**: Exposes dedicated internal protected CRUD logic functions like `POST /api/foods` and `DELETE /api/foods/:id`, directly fueling a decoupled dynamic frontend administrative CMS panel smoothly correctly.
 
 ---
 

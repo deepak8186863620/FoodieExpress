@@ -3,10 +3,8 @@ import dns from "dns";
 import dotenv from "dotenv";
 dotenv.config();
 
-// Force Google DNS to fix SRV lookup issues on Windows
 dns.setServers(["8.8.8.8", "8.8.4.4", "1.1.1.1"]);
 
-// ─── Connect to MongoDB ────────────────────────────────────────────────────────
 let isConnected = false;
 
 async function connectDB() {
@@ -15,9 +13,9 @@ async function connectDB() {
     await mongoose.connect(process.env.MONGODB_URI, {
       serverSelectionTimeoutMS: 15000,
       socketTimeoutMS: 45000,
-      family: 4,           // Force IPv4
+      family: 4,           
       tls: true,
-      tlsAllowInvalidCertificates: true,   // Fix self-signed cert issues
+      tlsAllowInvalidCertificates: true,   
       tlsAllowInvalidHostnames: true,
     });
     isConnected = true;
@@ -28,9 +26,6 @@ async function connectDB() {
   }
 }
 
-// ─── Generic Dynamic Schema ───────────────────────────────────────────────────
-// Instead of fixed schemas per collection, we use a flexible schema
-// so any collection/field structure works automatically.
 const modelCache = {};
 
 function getModel(collectionName) {
@@ -47,7 +42,6 @@ function getModel(collectionName) {
   return model;
 }
 
-// ─── Helper: Convert MongoDB doc → plain object with id field ─────────────────
 function toPlain(doc) {
   if (!doc) return null;
   const obj = doc.toObject ? doc.toObject() : { ...doc };
@@ -56,11 +50,7 @@ function toPlain(doc) {
   return obj;
 }
 
-// ─── DB Interface (same as database.js / Firestore adapter) ──────────────────
 const db = {
-  /**
-   * Get all documents from a collection.
-   */
   getCollection: async (collectionName) => {
     await connectDB();
     const Model = getModel(collectionName);
@@ -68,9 +58,6 @@ const db = {
     return docs.map((d) => ({ ...d, id: d._id?.toString() || d.id }));
   },
 
-  /**
-   * Get a single document by ID.
-   */
   getDoc: async (collectionName, id) => {
     await connectDB();
     const Model = getModel(collectionName);
@@ -79,9 +66,6 @@ const db = {
     return { ...doc, id: doc._id?.toString() || doc.id };
   },
 
-  /**
-   * Add a new document (auto-generated ID).
-   */
   addDoc: async (collectionName, data) => {
     await connectDB();
     const Model = getModel(collectionName);
@@ -91,28 +75,18 @@ const db = {
     return { ...data, id: newId };
   },
 
-  /**
-   * Update a document (merge/patch).
-   */
   updateDoc: async (collectionName, id, data) => {
     await connectDB();
     const Model = getModel(collectionName);
     await Model.findOneAndUpdate({ _id: id }, { $set: data }, { upsert: true });
   },
 
-  /**
-   * Delete a document.
-   */
   deleteDoc: async (collectionName, id) => {
     await connectDB();
     const Model = getModel(collectionName);
     await Model.findOneAndDelete({ _id: id });
   },
 
-  /**
-   * Query a collection by a field value.
-   * Supports operators: "==", "!=", ">", ">=", "<", "<="
-   */
   query: async (collectionName, field, operator, value) => {
     await connectDB();
     const Model = getModel(collectionName);
